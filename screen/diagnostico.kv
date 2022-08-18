@@ -1,0 +1,133 @@
+MDScreen:
+    name:"diagnostico"
+    diag : resp
+    enfermedad : enfermedad_id
+    camara2 : img2
+    nav_drawers : nav_drawer  
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            title: "MedicPiel"
+            elevation: 10
+            left_action_items: [["menu", lambda x: app.navegacion()]]
+            right_action_items: [["dots-vertical", lambda x: app.volver()]]
+        
+        ScrollView:
+            MDGridLayout:
+                cols: 1
+                adaptive_height: True
+                spacing: (10, 15)
+                padding: [25, 25]
+                MDCard:
+                    ripple_behavior: True
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    size: 80, 170
+                    elevation: 15
+                    radius: 25
+                    
+                    Image:
+                        id: img2
+                        allow_stretch: True
+                        keep_ratio: False
+                                # size_hint_y: .5
+                MDLabel:
+                    text: "Enfermedad"
+                    halign: "center" 
+                    height: 20   
+                MDTextField:
+                    id: enfermedad_id
+                    mode: "rectangle"
+                    text: "0"
+                    readonly: True
+                    size_hint_y: None
+                    height: 10
+                    opacity: 0
+                MDLabel:
+                    id: resp
+                    text: "Bienvenido"
+                    halign: "center" 
+                    height: 20             
+                MDLabel:
+                    text: "diagnostico"
+                    halign: "center" 
+                    height: 20   
+                    opacity: 0
+                MDRoundFlatButton:
+                    text: "Tratamiento"
+                    on_release: app.descripcionDiagnostico(enfermedad_id.text)
+                    pos_hint: {"center_x": .5, "center_y": .5}
+
+        MDBottomAppBar:
+            MDToolbar:
+                icon: 'git'
+                type: 'bottom'
+                #mode: "free-end"
+                mode: 'end'
+                on_action_button: app.consulta()
+    
+
+
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        orientation: "vertical"
+        padding: "8dp"
+        spacing: "8dp"
+
+        AnchorLayout:
+            anchor_x: "left"
+            size_hint_y: None
+            height: avatar.height
+
+            Image:
+                id: avatar
+                size_hint: None, None
+                size: "56dp", "56dp"
+                source: "data/perfil/images.jfif"
+
+        MDLabel:
+            text: "Pablo Perez Pereira"
+            font_style: "Button"
+            size_hint_y: None
+            height: self.texture_size[1]
+
+        MDLabel:
+            text: "pablo@gmail.com"
+            font_style: "Caption"
+            size_hint_y: None
+            height: self.texture_size[1]
+
+        ScrollView:
+            MDList:
+                OneLineIconListItem:
+                    text: 'Perfil'
+                    on_press:app.volver()
+                    IconLeftWidget:
+                        icon:'account'
+
+                OneLineIconListItem:
+                    text: 'Diagnostico'
+                    on_press:app.listarDiagnostiosNav()
+                    IconLeftWidget:
+                        icon:'window-shutter'
+                    
+
+                OneLineIconListItem:
+                    text: 'Consulta'
+                    on_press:app.consultaNav()
+                    IconLeftWidget:
+                        icon:'water-plus-outline'
+                    
+                    
+
+                OneLineIconListItem:
+                    text: 'Configuraciones'
+                    IconLeftWidget:
+                        icon:'wrench'
+
+                OneLineIconListItem:
+                    text: 'Salir'
+                    on_press:app.loginS()
+                    IconLeftWidget:
+                        icon:'close-circle-multiple'

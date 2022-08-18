@@ -1,0 +1,101 @@
+MDScreen:
+    name:"dashboard"
+    nav_drawers : nav_drawer    
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: "MedicPiel"
+            elevation: 10
+            left_action_items: [["menu", lambda x: app.navegacion()]]
+            right_action_items: [["dots-vertical", lambda x: app.volver()]]
+        
+        MDLabel:
+            id: nav_label
+            text: "Bienvenido"
+            halign: "center"
+        
+        MDLabel:
+            id: nav_label
+            text: "Paciente : Pablo Perez Pereira"
+            halign: "center"
+
+        MDLabel:
+            id: nav_label
+            text: "Edad : 25 años"
+            halign: "center"
+
+
+
+        MDBottomAppBar:
+            MDToolbar:
+                icon: 'git'
+                type: 'bottom'
+                #mode: "free-end"
+                mode: 'end'
+                on_action_button: app.consulta()
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        orientation: "vertical"
+        padding: "8dp"
+        spacing: "8dp"
+
+        AnchorLayout:
+            anchor_x: "left"
+            size_hint_y: None
+            height: avatar.height
+
+            Image:
+                id: avatar
+                size_hint: None, None
+                size: "60dp", "60dp"
+                source: "data/perfil/images.jfif"
+
+        MDLabel:
+            text: "Pablo Perez Pereira"
+            font_style: "Button"
+            size_hint_y: None
+            height: self.texture_size[1]
+
+        MDLabel:
+            text: "pablo@gmail.com"
+            font_style: "Caption"
+            size_hint_y: None
+            height: self.texture_size[1]
+
+        ScrollView:
+            MDList:
+                OneLineIconListItem:
+                    text: 'Perfil'
+                    on_press:app.volver()
+                    IconLeftWidget:
+                        icon:'account'
+
+                OneLineIconListItem:
+                    text: 'Diagnostico'
+                    on_press:app.listarDiagnostiosNav()
+                    IconLeftWidget:
+                        icon:'window-shutter'
+                    
+
+                OneLineIconListItem:
+                    text: 'Consulta'
+                    on_press:app.consultaNav()
+                    IconLeftWidget:
+                        icon:'water-plus-outline'
+                    
+                    
+
+                OneLineIconListItem:
+                    text: 'Configuraciones'
+                    IconLeftWidget:
+                        icon:'wrench'
+
+                OneLineIconListItem:
+                    text: 'Salir'
+                    on_press:app.loginS()
+                    IconLeftWidget:
+                        icon:'close-circle-multiple'
+                        
+

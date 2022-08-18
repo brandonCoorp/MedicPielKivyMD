@@ -1,0 +1,68 @@
+MDScreen:
+    name:"login"
+    md_bg_color:[9/255, 10/255, 24/255,0.5]
+
+    MDLabel:
+        id: titulo
+        text: "MedicPiel"
+        font_size: 33
+        halign: 'center'
+        size_hint_y: None
+        height: self.texture_size[1]
+        padding_y: 12    
+
+    MDCard:
+        size_hint: None, None
+        size: 250, 370
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 15
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        md_bg_color:[4/255, 7/255, 13/255,0.2]
+
+        MDLabel:
+            id: logine
+            text: "Login"
+            font_size: 33
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 12
+        
+        MDTextFieldRound:
+            id:user
+            hint_text: "correo"
+            icon_right: "account"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+        
+        MDTextFieldRound:
+            id:password
+            hint_text: "contraseña"
+            icon_right: "eye-off"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+        
+        MDRoundFlatButton:
+            text: "Iniciar Sesion"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_press: app.logger(user.text, password.text)
+            
+        MDRoundFlatButton:
+            text: "Registrarse"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_press: app.regsitrarP()
+        
+        Widget:
+            size_hint_y:None
+            height: 10
+
+
